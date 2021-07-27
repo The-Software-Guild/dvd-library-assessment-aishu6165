@@ -22,7 +22,7 @@ public class Adder {
     // input from the console
     Scanner myScanner = new Scanner(System.in);
     //assign the sum of operand1 and operand2 to sum
-    sum = operand1 + operand2;
+    //sum = operand1 + operand2;
 
   // declare and initialize String (text) variables to hold the
     // values that the user types in - the Console only accepts
