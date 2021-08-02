@@ -23,7 +23,7 @@ import java.util.Scanner;
 public class DVDLibraryView {
 
     private static Scanner sc = new Scanner(System.in);
-    private static DVDController controller = new DVDController();//controlleer class 
+    private static DVDController controller = new DVDController();//controller class 
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
         boolean flag = true;
