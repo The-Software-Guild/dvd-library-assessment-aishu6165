@@ -2,3 +2,4 @@ com\dvd\model\DVDLibrary.class
 com\dvd\view\DVDLibraryView.class
 com\dvd\controller\DVDController.class
 com\dvd\service\DVDService.class
+com\dvd\service\DVDServiceImpl.class

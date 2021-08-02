@@ -7,6 +7,7 @@ package com.dvd.controller;
 
 import com.dvd.model.DVDLibrary;
 import com.dvd.service.DVDService;
+import com.dvd.service.DVDServiceImpl;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -21,8 +22,7 @@ import java.util.List;
  * we are providing service object to controller
  */
 public class DVDController {
-     DVDService dvdService = new DVDService();
-
+     private DVDService dvdService = new DVDServiceImpl();
 
     public String insertDvd( DVDLibrary dvdLibrary){
         String str = dvdService.add(dvdLibrary);
@@ -38,8 +38,8 @@ public class DVDController {
     }
 
     
-    public String remove( DVDLibrary dvdLibrary){
-        String str = dvdService.remove(dvdLibrary);
+    public String remove( String title){
+        String str = dvdService.remove(title);
 
         return str;
     }
