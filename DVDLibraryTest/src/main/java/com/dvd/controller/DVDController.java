@@ -6,13 +6,15 @@
 package com.dvd.controller;
 
 import com.dvd.model.DVDLibrary;
-import com.dvd.service.DVDService;
-import com.dvd.service.DVDServiceImpl;
+import com.dvd.dao.DVDDaoImpl;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.List;
+import com.dvd.dao.DVDDao;
+import com.dvd.ui.DVDLibraryView;
+import java.io.IOException;
 
 /**
  *
@@ -22,9 +24,20 @@ import java.util.List;
  * we are providing service object to controller
  */
 public class DVDController {
-     private DVDService dvdService = new DVDServiceImpl();
+     private DVDDao dvdService ;
+     
+  private DVDLibraryView dvdView ;
 
-    public String insertDvd( DVDLibrary dvdLibrary){
+    public DVDController(DVDDao dvdDao, DVDLibraryView dvdLibraryView) {
+         //To change body of generated methods, choose Tools | Templates.
+         this.dvdService=dvdDao;
+         this.dvdView = dvdLibraryView;
+    }
+
+     public void run() throws IOException {
+         dvdView.execute();
+    }
+    public String add( DVDLibrary dvdLibrary){
         String str = dvdService.add(dvdLibrary);
 
         return str;
@@ -69,7 +82,10 @@ public class DVDController {
         PrintWriter pw = new PrintWriter(new FileOutputStream("dvdFile"));
         List<DVDLibrary> dvdLibraries = dvdService.getListDvd();
         for (DVDLibrary dvdLibrary : dvdLibraries)
+        {
+            System.out.println("Data to be saved to file -----------------------"+dvdLibrary);
             pw.println(dvdLibrary); //
+        }
         
         pw.close();
 
@@ -82,4 +98,6 @@ public class DVDController {
 
         return file;
     }
+
+    
 }

@@ -66,14 +66,14 @@ public class DVDLibrary {
     }
     
      public String toString() {
-        return "DVDLibrary{" +
+        return 
                 "title='" + title + '\'' +
                 ", releaseDate='" + releaseDate + '\'' +
                 ", mpaaRating='" + mpaaRating + '\'' +
                 ", directorsName='" + directorsName + '\'' +
                 ", studio='" + studio + '\'' +
-                ", note='" + note + '\'' +
-                '}';
+                ", note='" + note + '\'' 
+                ;
     }
     
 }

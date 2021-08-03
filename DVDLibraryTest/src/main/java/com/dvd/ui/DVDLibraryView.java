@@ -3,16 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dvd.view;
+package com.dvd.ui;
 
 import com.dvd.controller.DVDController;
 import com.dvd.model.DVDLibrary;
+import com.dvd.dao.DVDDao;
+import com.dvd.dao.DVDDaoImpl;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,9 +26,15 @@ import java.util.Scanner;
 public class DVDLibraryView {
 
     private static Scanner sc = new Scanner(System.in);
-    private static DVDController controller = new DVDController();//controller class 
+    private DVDController controller;
 
-    public static void main(String[] args) throws FileNotFoundException, IOException {
+    public void setController(DVDController controller) {
+        this.controller = controller;
+    }
+    
+    
+
+    public  void execute() throws FileNotFoundException, IOException {
         boolean flag = true;
         int value = 0;
         while(flag){
@@ -72,17 +81,8 @@ public class DVDLibraryView {
         System.out.println("File save " + save);
         //getting file name
         File file = controller.getfile();
-        BufferedReader bufReader = new BufferedReader(new FileReader(file.toString()));
-        ArrayList<String> listOfLines = new ArrayList<>(); 
-        String line = bufReader.readLine();
-        while (line != null) { 
-            listOfLines.add(line);
-            line = bufReader.readLine(); 
-        }
-
-
-
-        System.out.println("File Name "+listOfLines);
+        //reading data from file
+        
         }
         else{
             flag = true;
@@ -92,7 +92,7 @@ public class DVDLibraryView {
 
     }
 
-    private static void addLibrary() {
+    private void addLibrary() {
         System.out.println("Please Enter Title :");
         String title = sc.nextLine();
         System.out.println("Please Enter Release Date :");
@@ -109,17 +109,17 @@ public class DVDLibraryView {
         DVDLibrary userLibrary = new DVDLibrary();
         userLibrary.setTitle(title);
         userLibrary.setReleaseDate(date);
-        userLibrary.setDirectorsName(directorsName);
+        userLibrary.setDirectorsName(directorsName); 
         userLibrary.setMpaaRating(mpaaRating);
         userLibrary.setStudio(studio);
         userLibrary.setNote(note);
 
         //Inserting dvd library to the collection
-        String str = controller.insertDvd(userLibrary);
+        String str = controller.add(userLibrary);
         System.out.println("DVD " + str);
     }
 
-    private static void editLibrary() {
+    private  void editLibrary() {
         System.out.println("Please Enter Title :");
         String title = sc.nextLine();
         System.out.println("Please Enter Release Date :");
@@ -145,7 +145,7 @@ public class DVDLibraryView {
         System.out.println("DVD " + edit);
     }
 
-    private static void removeLibrary() {
+    private void removeLibrary() {
         System.out.println("Please Enter Title :");
         String title = sc.nextLine();
       
@@ -154,7 +154,7 @@ public class DVDLibraryView {
         System.out.println("DVD " + str);
     }
 
-    private static void getLibraryByTitle() {
+    private void getLibraryByTitle() {
         System.out.println("Please Enter Title: ");
         String title = sc.nextLine();
         DVDLibrary dvdLibrary = controller.getByTitle(title);
@@ -162,7 +162,7 @@ public class DVDLibraryView {
         System.out.println("By Title " + dvdLibrary);
     }
 
-    private static void getLibraryInfo() {
+    private void getLibraryInfo() {
         System.out.println("Please Enter Text: ");
         String value = sc.nextLine();
         //get Dvd info based on user value

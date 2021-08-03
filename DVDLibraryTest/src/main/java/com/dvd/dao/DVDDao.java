@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dvd.service;
+package com.dvd.dao;
 
 import com.dvd.model.DVDLibrary;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Aishwarya
  */
-public interface DVDService {
+public interface DVDDao {
     
      public String  add(DVDLibrary dvdLibrary);
      public String  edit(DVDLibrary dvdLibrary);
